@@ -37,11 +37,25 @@ export class CrudManager {
             let valuesTemp: any[] = result.values;
             let values: any[] = [];
 
-            let credit: number = valuesTemp[valuesTemp.length - 1][3]; // Total de entradas
-            let debit: number = valuesTemp[valuesTemp.length - 1][4]; // Total de saídas
+            let credit: string;
+            let debit: string;
+            let total: string;
 
-            for (let i = 0; i < valuesTemp.length - 1; i++) {
+            for (let i = 0; i < valuesTemp.length; i++) {
               let valueTemp: any = valuesTemp[i];
+              if (valueTemp.length == 0) continue;
+
+              if (valueTemp.length == 5 && valueTemp[0] == "" && valueTemp[3] != "") {
+                credit = valueTemp[3];
+                debit = valueTemp[4];
+                continue;
+              }
+
+              if (valueTemp.length == 6 && valueTemp[5] != "") {
+                total = valueTemp[5];
+                continue;
+              }
+
               let isCredit: boolean = valueTemp[3] != "";
 
               let newValue: any = {
@@ -54,7 +68,7 @@ export class CrudManager {
               values.push(newValue);
             }
 
-            resolve({ values, credit, debit });
+            resolve({ values, credit, debit, total });
           }
         });
       } catch (error) {

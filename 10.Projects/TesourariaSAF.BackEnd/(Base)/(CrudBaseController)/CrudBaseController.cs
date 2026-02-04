@@ -49,11 +49,12 @@ namespace TesourariaSAF.BackEnd
                 return NotFound("Nenhuma página encontrada");
 
             List<GridRange> merges = sheet.Merges.Skip(6).ToList();
+            merges.Sort((a, b) => (a.StartRowIndex ?? 0) - (b.StartRowIndex ?? 0));
 
             GridRange? firstRange = merges.FirstOrDefault();
             GridRange? lastRange = merges.LastOrDefault();
 
-            string range = $"{sheet.Properties.Title}!A{firstRange.StartRowIndex + 1}:G{lastRange.EndRowIndex + 1}";
+            string range = $"{sheet.Properties.Title}!A{firstRange.StartRowIndex + 1}:G{lastRange.EndRowIndex}";
 
             ValueRange values = _googleSheetsService.GetService().Spreadsheets.Values.Get(spreadSheetId, range).Execute();
 

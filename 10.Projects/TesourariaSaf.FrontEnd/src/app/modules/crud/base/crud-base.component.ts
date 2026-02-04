@@ -17,8 +17,9 @@ export class CrudBaseComponent implements OnInit {
   public isList: boolean = true;
 
   public entities: any[] = [];
-  public totalCredit: number = 0;
-  public totalDebit: number = 0;
+  public totalCredit: string = "";
+  public totalDebit: string = "";
+  public total: string = "";
   //#endregion
 
   //#region Constructor
@@ -59,10 +60,10 @@ export class CrudBaseComponent implements OnInit {
     return new Promise<void>((resolve, reject) => {
       this.crudManager.loadEntities().then((result: any) => {
         if (result) {
-          console.log(result);
           this.entities = result.values;
           this.totalCredit = result.credit;
           this.totalDebit = result.debit;
+          this.total = result.total;
           resolve();
         }
       }, reject);
