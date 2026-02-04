@@ -7,18 +7,7 @@ import { Component, OnInit, signal } from '@angular/core';
   standalone: false,
   styleUrl: './app.scss'
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('TesourariaSaf.FrontEnd');
-
-  constructor(private httpClient: HttpClient) {
-
-  }
-
-  ngOnInit(): void {
-    this.httpClient.get("https://localhost:7138/crudbase", { headers: { "Content-Type" : "application/json" } }).subscribe((result: any) => {
-      console.log(result);
-    });
-  }
-
 
 }

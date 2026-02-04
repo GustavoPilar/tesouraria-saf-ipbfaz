@@ -1,0 +1,7 @@
+<div class="grid">
+  @for (sheet of sheetOptions; track $index) {
+    <div class="field lg:col-6 col-12">
+      <p-button [label]="sheet.sheetTitle" fluid="true" (onClick)="navigateTo(sheet)"></p-button>
+    </div>
+  }
+</div>

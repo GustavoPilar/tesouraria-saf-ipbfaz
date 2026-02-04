@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("../node_modules/primeicons/primeicons.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--p-gray-200);
+}
